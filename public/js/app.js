@@ -1766,9 +1766,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      projects: {},
       form: new Form({
         fullname: '',
         photo: '',
@@ -1780,15 +1790,23 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    uploadPhoto: function uploadPhoto(e) {
+    loadProjects: function loadProjects() {
       var _this = this;
+
+      axios.get("api/project").then(function (_ref) {
+        var data = _ref.data;
+        return _this.projects = data.data;
+      });
+    },
+    uploadPhoto: function uploadPhoto(e) {
+      var _this2 = this;
 
       var file = e.target.files[0];
       var reader = new FileReader();
 
       if (file['size'] < 2111775) {
         reader.onloadend = function (file) {
-          _this.form.photo = reader.result;
+          _this2.form.photo = reader.result;
         };
 
         reader.readAsDataURL(file);
@@ -1806,6 +1824,7 @@ __webpack_require__.r(__webpack_exports__);
     Fire.$on('AfterCreate', function () {
       console.log('Created new worker');
     });
+    this.loadProjects();
   }
 });
 
@@ -38428,6 +38447,26 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "inputEmail4" } }, [
+                    _vm._v("Добавить проект")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    { staticClass: "form-control" },
+                    _vm._l(_vm.projects, function(project) {
+                      return _c("option", { key: project.id }, [
+                        _vm._v(
+                          "\n                                    " +
+                            _vm._s(project.project_name)
+                        )
+                      ])
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
                 _c(
                   "button",
                   { staticClass: "btn btn-primary", attrs: { type: "submit" } },
@@ -53496,6 +53535,7 @@ var routes = [{
   component: __webpack_require__(/*! ./components/Show.vue */ "./resources/js/components/Show.vue")["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  mode: 'history',
   routes: routes // short for `routes: routes`
 
 });

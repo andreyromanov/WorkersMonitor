@@ -36,6 +36,15 @@
                                 <input v-model="form.language" type="number" class="form-control" min="0" max="10"
                                     placeholder="Знание языков">
                             </div>
+                            <div class="form-group">
+                                <label for="inputEmail4">Добавить проект</label>
+                                <select class="form-control">
+                                    
+                                    <option v-for="project in projects" :key="project.id">
+                                        {{project.project_name}}</option>
+                                    
+                                </select>
+                            </div>
                             <button type="submit" class="btn btn-primary">Добавить</button>
                         </form>
                     </div>
@@ -49,6 +58,7 @@
     export default {
         data() {
             return {
+                projects: {},
                 form: new Form({
                     fullname: '',
                     photo: '',
@@ -60,6 +70,11 @@
             }
         },
         methods: {
+            loadProjects() {
+                 axios.get("api/project").then(({
+                    data
+                }) => (this.projects = data.data));
+            },
             uploadPhoto(e) {
                 let file = e.target.files[0];
                 let reader = new FileReader();
@@ -84,9 +99,11 @@
             }
         },
         created() {
+            
             Fire.$on('AfterCreate', () => {
                 console.log('Created new worker');
             });
+            this.loadProjects();
         }
     }
 
