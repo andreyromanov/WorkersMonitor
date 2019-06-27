@@ -26,9 +26,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
+        if($request->photo){
+            $name = time(). '.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];
+            
+            \Image::make($request->photo)->save(public_path('img/').$name);
+            $userPhoto = 'img/'.$name;
+            //$request->merge(['photo' => $name]);
+            
+        } else{
+            $userPhoto = 'img/default.jpg';
+        }
+
+
         return User::create([
             'fullname' => $request['fullname'],
-            'photo' => $request['photo'],
+            'photo' => $userPhoto,
             'communication' => $request['communication'],
             'engineer_skills' => $request['engineer'],
             'time_management' => $request['time'],
@@ -68,5 +81,18 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search()
+    {
+       if($search = \Request::get('q')){
+        $users = User::where(function($query) use ($search) {
+            $query->where('fullname', 'LIKE', "%$search%");})
+                  ->paginate(20);
+        
+       } else{
+        $users =  User::latest()->paginate(10);
+       }
+        return $users;
     }
 }

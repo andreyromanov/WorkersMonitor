@@ -1761,6 +1761,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1775,12 +1780,31 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    uploadPhoto: function uploadPhoto(e) {
+      var _this = this;
+
+      var file = e.target.files[0];
+      var reader = new FileReader();
+
+      if (file['size'] < 2111775) {
+        reader.onloadend = function (file) {
+          _this.form.photo = reader.result;
+        };
+
+        reader.readAsDataURL(file);
+      } else {
+        swal.fire('Failed to Upload!', 'More than 2MB.', 'warning');
+      }
+    },
     createUser: function createUser() {
       this.form.post('api/user');
+      Fire.$emit('AfterCreate');
     }
   },
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  created: function created() {
+    Fire.$on('AfterCreate', function () {
+      console.log('Created new worker');
+    });
   }
 });
 
@@ -1876,6 +1900,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1901,6 +1931,14 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
+    var _this2 = this;
+
+    Fire.$on('searching', function () {
+      var query = _this2.$parent.search;
+      axios.get('api/findUser?q=' + query).then(function (data) {
+        _this2.users = data.data;
+      })["catch"](function () {});
+    });
     this.loadUser();
   }
 });
@@ -38248,7 +38286,17 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _vm._m(0),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "exampleFormControlFile1" } }, [
+                    _vm._v("Upload photo")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control-file",
+                    attrs: { type: "file" },
+                    on: { change: _vm.uploadPhoto }
+                  })
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "inputEmail4" } }, [
@@ -38395,20 +38443,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "exampleFormControlFile1" } }, [
-        _vm._v("Upload photo")
-      ]),
-      _vm._v(" "),
-      _c("input", { staticClass: "form-control-file", attrs: { type: "file" } })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -38477,12 +38512,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "container mb-5" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-10" }, [
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v("Список сотрудников")
+          _c("div", { staticClass: "card-header text-center" }, [
+            _vm._v("Список сотрудников\n                   \n                ")
           ]),
           _vm._v(" "),
           _c(
@@ -38503,7 +38538,18 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(0, true),
+                      _c("div", { staticClass: "col-md-3" }, [
+                        _c("div", { staticClass: "text-center pt-3 pb-3" }, [
+                          _c("img", {
+                            staticClass: "border",
+                            staticStyle: {
+                              "border-radius": "50%",
+                              width: "150px"
+                            },
+                            attrs: { src: user.photo, alt: "..." }
+                          })
+                        ])
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-7 border-left" }, [
                         _c("h3", { staticClass: "text-center pt-3 pb-3" }, [
@@ -38558,13 +38604,15 @@ var render = function() {
                         [
                           _c("h1", { staticClass: "pt-5" }, [
                             _vm._v(
-                              _vm._s(
-                                (user.communication +
-                                  user.engineer_skills +
-                                  user.time_management +
-                                  user.languages) /
-                                  4
-                              )
+                              "\n                                    " +
+                                _vm._s(
+                                  (user.communication +
+                                    user.engineer_skills +
+                                    user.time_management +
+                                    user.languages) /
+                                    4
+                                ) +
+                                "\n                                "
                             )
                           ]),
                           _vm._v(" "),
@@ -38583,22 +38631,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3" }, [
-      _c("div", { staticClass: "text-center pt-3 pb-3" }, [
-        _c("img", {
-          staticClass: "border",
-          staticStyle: { "border-radius": "50%", width: "150px" },
-          attrs: { src: "img/default.jpg", alt: "..." }
-        })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -53462,6 +53495,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: routes // short for `routes: routes`
 
 });
+window.Fire = new Vue();
+;
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -53480,7 +53515,15 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  */
 
 var app = new Vue({
-  router: router
+  router: router,
+  data: {
+    search: ''
+  },
+  methods: {
+    searchit: function searchit() {
+      Fire.$emit('searching');
+    }
+  }
 }).$mount('#app');
 
 /***/ }),
