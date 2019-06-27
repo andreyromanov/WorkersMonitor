@@ -1827,6 +1827,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -37302,13 +37334,74 @@ var staticRenderFns = [
         _c("div", { staticClass: "col-md-10" }, [
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
-              _vm._v("Show Component")
+              _vm._v("Список сотрудников")
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
+              _c("div", { staticClass: "container mb-4" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "row border",
+                    staticStyle: {
+                      "box-shadow":
+                        "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "col-md-3" }, [
+                      _c("div", { staticClass: "text-center pt-3 pb-3" }, [
+                        _c("img", {
+                          staticClass: "border",
+                          staticStyle: {
+                            "border-radius": "50%",
+                            width: "150px"
+                          },
+                          attrs: { src: "img/default.jpg", alt: "..." }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-7 border-left" }, [
+                      _c("h3", { staticClass: "text-center pt-3 pb-3" }, [
+                        _vm._v("Andrii Romanov")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("ul", [
+                            _c("li", [_vm._v("Коммуникабельность - 10")]),
+                            _vm._v(" "),
+                            _c("li", [_vm._v("Инженерные навыки - 10")])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("ul", [
+                            _c("li", [_vm._v("Тайм менеджмент - 10")]),
+                            _vm._v(" "),
+                            _c("li", [_vm._v("Знание языков - 10")])
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("h5", { staticClass: "text-center pt-3" }, [
+                        _vm._v("Текущих проектов - 1")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-md-2 text-center border-left" },
+                      [
+                        _c("h1", { staticClass: "pt-5" }, [_vm._v("10")]),
+                        _vm._v(" "),
+                        _c("small", [_vm._v("Средняя оценка")])
+                      ]
+                    )
+                  ]
+                )
+              ])
             ])
           ])
         ])
