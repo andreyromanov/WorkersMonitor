@@ -6,7 +6,7 @@
                     <div class="card-header">Список сотрудников</div>
                     <div class="card-body">
 
-                        <div class="container mb-4">
+                        <div class="container mb-4" v-for="user in users" :key="user.id">
                             <div class="row border"
                                 style="box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)">
                                 <div class="col-md-3">
@@ -15,25 +15,25 @@
                                     </div>
                                 </div>
                                 <div class="col-md-7 border-left">
-                                    <h3 class="text-center pt-3 pb-3">Andrii Romanov</h3>
+                                    <h3 class="text-center pt-3 pb-3">{{user.fullname}}</h3>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <ul>
-                                                <li>Коммуникабельность - 10</li>
-                                                <li>Инженерные навыки - 10</li>
+                                                <li>Коммуникабельность - {{user.communication }}</li>
+                                                <li>Инженерные навыки - {{user.engineer_skills}}</li>
                                             </ul>
                                         </div>
                                         <div class="col-md-6">
                                              <ul>
-                                                <li>Тайм менеджмент - 10</li>
-                                                <li>Знание языков - 10</li>
+                                                <li>Тайм менеджмент - {{user.time_management}}</li>
+                                                <li>Знание языков - {{user.languages}}</li>
                                             </ul>
                                         </div>
                                     </div>
                                     <h5 class="text-center pt-3">Текущих проектов - 1</h5>
                                 </div>
                                 <div class="col-md-2 text-center border-left">
-                                    <h1 class="pt-5">10</h1>
+                                    <h1 class="pt-5">{{(user.communication + user.engineer_skills + user.time_management + user.languages)/4 }}</h1>
                                     <small>Средняя оценка</small>
                                 </div>
                             </div>
@@ -48,8 +48,27 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+        data(){
+            return{
+                users: {},
+
+                form: new Form({
+                    fullname: '',
+                    photo: '',
+                    communication: '',
+                    engineer: '',
+                    time: '',
+                    language: ''
+                })
+            }
+        },
+        methods: {
+           loadUser(){
+               axios.get("api/user").then(({ data }) => (this.users = data.data));
+           }
+        },
+        created() {
+            this.loadUser();
         }
     }
 

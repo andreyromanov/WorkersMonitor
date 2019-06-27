@@ -6,10 +6,10 @@
                     <div class="card-header">Create Component</div>
 
                     <div class="card-body">
-                        <form>
+                        <form @submit.prevent="createUser" >
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Full name</label>
-                                <input type="text" class="form-control" placeholder="Full name" required>
+                                <input v-model="form.fullname" type="text" class="form-control" placeholder="Full name" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">Upload photo</label>
@@ -17,19 +17,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail4">Communication</label>
-                                <input type="number" class="form-control" min="0" max="10" placeholder="Communication">
+                                <input v-model="form.communication" type="number" class="form-control" min="0" max="10" placeholder="Communication">
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail4">Engineer Skills</label>
-                                <input type="number" class="form-control" min="0" max="10" placeholder="Engineer Skills">
+                                <input v-model="form.engineer" type="number" class="form-control" min="0" max="10" placeholder="Engineer Skills">
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail4">Time Management</label>
-                                <input type="number" class="form-control" min="0" max="10" placeholder="Time Management">
+                                <input v-model="form.time" type="number" class="form-control" min="0" max="10" placeholder="Time Management">
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail4">Languages</label>
-                                <input type="number" class="form-control" min="0" max="10" placeholder="Languages">
+                                <input v-model="form.language" type="number" class="form-control" min="0" max="10" placeholder="Languages">
                             </div>
                             <button type="submit" class="btn btn-primary">Add</button>
                         </form>
@@ -42,6 +42,23 @@
 
 <script>
     export default {
+        data(){
+            return{
+                form: new Form({
+                    fullname: '',
+                    photo: '',
+                    communication: '',
+                    engineer: '',
+                    time: '',
+                    language: ''
+                })
+            }
+        },
+        methods: {
+            createUser(){
+                this.form.post('api/user');
+            }
+        },
         mounted() {
             console.log('Component mounted.')
         }
