@@ -50,7 +50,14 @@
                             <router-link class="nav-link" to="/show">Show</router-link>
                         </li>
                     </ul>
-                    <input type="text" v-model="search" @keyup="searchit">
+                    <div class="input-group input-group-sm" style="width: 200px;">
+                    <input @keyup="searchit" v-model="search" class="form-control form-control-navbar" type="search" placeholder="Поиск по ФИО" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-navbar" @click="searchit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
                 </div>
             </div>
         </nav>

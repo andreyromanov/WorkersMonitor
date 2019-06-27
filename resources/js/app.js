@@ -7,7 +7,11 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-import { Form, HasError, AlertError } from 'vform'
+import {
+    Form,
+    HasError,
+    AlertError
+} from 'vform'
 window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
@@ -16,17 +20,22 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 
-let routes = [
-    { path: '/create', component: require('./components/Create.vue').default },
-    { path: '/show', component: require('./components/Show.vue').default }
-  ]
+let routes = [{
+        path: '/create',
+        component: require('./components/Create.vue').default
+    },
+    {
+        path: '/show',
+        component: require('./components/Show.vue').default
+    }
+]
 
-  const router = new VueRouter({
+const router = new VueRouter({
     routes // short for `routes: routes`
-  })
+})
 
-   
-  window.Fire = new Vue();;
+
+window.Fire = new Vue();;
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -47,14 +56,16 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
+    el: '#app',
     router,
-    data:{
-      search: ''
+    data: {
+        search: ''
     },
-    methods:{
-      searchit(){
-        Fire.$emit('searching');
-      }
+    methods: {
+        searchit: _.debounce(() => {
+            Fire.$emit('searching');
+        }, 1000)
+
 
     }
-     }).$mount('#app')
+});
