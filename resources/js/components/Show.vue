@@ -3,11 +3,11 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header text-center">Список сотрудников
-                       
-                    </div>
+                    <div class="card-header text-center">Список сотрудников</div>
 
                     <div class="card-body">
+
+                        <div v-if="!users.length">Сотрудники пока не добавлены</div>
 
                         <div class="container mb-4" v-for="user in users" :key="user.id">
                             <div class="row border"

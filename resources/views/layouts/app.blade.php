@@ -44,10 +44,10 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/create">Create</router-link>
+                            <router-link class="nav-link" to="/">Создать</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/show">Show</router-link>
+                            <router-link class="nav-link" to="/show">Показать</router-link>
                         </li>
                     </ul>
                     <div class="input-group input-group-sm" style="width: 200px;">

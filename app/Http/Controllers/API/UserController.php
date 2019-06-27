@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::latest()->paginate(10);
+        return User::latest()->paginate(20);
     }
 
     /**
@@ -26,6 +26,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'communication' => 'required|integer|max:10|min:0',
+            'engineer' => 'required|integer|max:10|min:0',
+            'time' => 'required|integer|max:10|min:0',
+            'language' => 'required|integer|max:10|min:0',
+        ]);
 
         if($request->photo){
             $name = time(). '.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];

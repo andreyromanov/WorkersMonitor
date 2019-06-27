@@ -1798,6 +1798,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     createUser: function createUser() {
       this.form.post('api/user');
+      this.$router.push('/show');
       Fire.$emit('AfterCreate');
     }
   },
@@ -38239,8 +38240,8 @@ var render = function() {
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-10" }, [
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v("Create Component")
+          _c("div", { staticClass: "card-header text-center" }, [
+            _vm._v("Создать сотрудника")
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
@@ -38257,7 +38258,7 @@ var render = function() {
               [
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "exampleInputEmail1" } }, [
-                    _vm._v("Full name")
+                    _vm._v("ФИО")
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -38270,11 +38271,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      placeholder: "Full name",
-                      required: ""
-                    },
+                    attrs: { type: "text", placeholder: "ФИО", required: "" },
                     domProps: { value: _vm.form.fullname },
                     on: {
                       input: function($event) {
@@ -38289,7 +38286,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "exampleFormControlFile1" } }, [
-                    _vm._v("Upload photo")
+                    _vm._v("Загрузить фото")
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -38301,7 +38298,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "inputEmail4" } }, [
-                    _vm._v("Communication")
+                    _vm._v("Коммуникация")
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -38318,7 +38315,7 @@ var render = function() {
                       type: "number",
                       min: "0",
                       max: "10",
-                      placeholder: "Communication"
+                      placeholder: "Коммуникация"
                     },
                     domProps: { value: _vm.form.communication },
                     on: {
@@ -38334,7 +38331,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "inputEmail4" } }, [
-                    _vm._v("Engineer Skills")
+                    _vm._v("Инженерные навыки")
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -38351,7 +38348,7 @@ var render = function() {
                       type: "number",
                       min: "0",
                       max: "10",
-                      placeholder: "Engineer Skills"
+                      placeholder: "Инженерные навыки"
                     },
                     domProps: { value: _vm.form.engineer },
                     on: {
@@ -38367,7 +38364,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "inputEmail4" } }, [
-                    _vm._v("Time Management")
+                    _vm._v("Тайм менеджмент")
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -38384,7 +38381,7 @@ var render = function() {
                       type: "number",
                       min: "0",
                       max: "10",
-                      placeholder: "Time Management"
+                      placeholder: "Тайм менеджмент"
                     },
                     domProps: { value: _vm.form.time },
                     on: {
@@ -38400,7 +38397,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "inputEmail4" } }, [
-                    _vm._v("Languages")
+                    _vm._v("Знание языков")
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -38417,7 +38414,7 @@ var render = function() {
                       type: "number",
                       min: "0",
                       max: "10",
-                      placeholder: "Languages"
+                      placeholder: "Знание языков"
                     },
                     domProps: { value: _vm.form.language },
                     on: {
@@ -38434,7 +38431,7 @@ var render = function() {
                 _c(
                   "button",
                   { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                  [_vm._v("Add")]
+                  [_vm._v("Добавить")]
                 )
               ]
             )
@@ -38518,114 +38515,120 @@ var render = function() {
       _c("div", { staticClass: "col-md-10" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header text-center" }, [
-            _vm._v("Список сотрудников\n                   \n                ")
+            _vm._v("Список сотрудников")
           ]),
           _vm._v(" "),
           _c(
             "div",
             { staticClass: "card-body" },
-            _vm._l(_vm.users, function(user) {
-              return _c(
-                "div",
-                { key: user.id, staticClass: "container mb-4" },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "row border",
-                      staticStyle: {
-                        "box-shadow":
-                          "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "col-md-3" }, [
-                        _c("div", { staticClass: "text-center pt-3 pb-3" }, [
-                          _c("img", {
-                            staticClass: "border",
-                            staticStyle: {
-                              "border-radius": "50%",
-                              width: "150px"
-                            },
-                            attrs: { src: user.photo, alt: "..." }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-7 border-left" }, [
-                        _c("h3", { staticClass: "text-center pt-3 pb-3" }, [
-                          _vm._v(_vm._s(user.fullname))
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("ul", [
-                              _c("li", [
-                                _vm._v(
-                                  "Коммуникабельность - " +
-                                    _vm._s(user.communication)
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _vm._v(
-                                  "Инженерные навыки - " +
-                                    _vm._s(user.engineer_skills)
-                                )
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("ul", [
-                              _c("li", [
-                                _vm._v(
-                                  "Тайм менеджмент - " +
-                                    _vm._s(user.time_management)
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _vm._v(
-                                  "Знание языков - " + _vm._s(user.languages)
-                                )
-                              ])
-                            ])
+            [
+              !_vm.users.length
+                ? _c("div", [_vm._v("Сотрудники пока не добавлены")])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.users, function(user) {
+                return _c(
+                  "div",
+                  { key: user.id, staticClass: "container mb-4" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "row border",
+                        staticStyle: {
+                          "box-shadow":
+                            "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("div", { staticClass: "text-center pt-3 pb-3" }, [
+                            _c("img", {
+                              staticClass: "border",
+                              staticStyle: {
+                                "border-radius": "50%",
+                                width: "150px"
+                              },
+                              attrs: { src: user.photo, alt: "..." }
+                            })
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("h5", { staticClass: "text-center pt-3" }, [
-                          _vm._v("Текущих проектов - 1")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-md-2 text-center border-left" },
-                        [
-                          _c("h1", { staticClass: "pt-5" }, [
-                            _vm._v(
-                              "\n                                    " +
-                                _vm._s(
-                                  (user.communication +
-                                    user.engineer_skills +
-                                    user.time_management +
-                                    user.languages) /
-                                    4
-                                ) +
-                                "\n                                "
-                            )
+                        _c("div", { staticClass: "col-md-7 border-left" }, [
+                          _c("h3", { staticClass: "text-center pt-3 pb-3" }, [
+                            _vm._v(_vm._s(user.fullname))
                           ]),
                           _vm._v(" "),
-                          _c("small", [_vm._v("Средняя оценка")])
-                        ]
-                      )
-                    ]
-                  )
-                ]
-              )
-            }),
-            0
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _c("ul", [
+                                _c("li", [
+                                  _vm._v(
+                                    "Коммуникабельность - " +
+                                      _vm._s(user.communication)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _vm._v(
+                                    "Инженерные навыки - " +
+                                      _vm._s(user.engineer_skills)
+                                  )
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _c("ul", [
+                                _c("li", [
+                                  _vm._v(
+                                    "Тайм менеджмент - " +
+                                      _vm._s(user.time_management)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _vm._v(
+                                    "Знание языков - " + _vm._s(user.languages)
+                                  )
+                                ])
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("h5", { staticClass: "text-center pt-3" }, [
+                            _vm._v("Текущих проектов - 1")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-md-2 text-center border-left" },
+                          [
+                            _c("h1", { staticClass: "pt-5" }, [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(
+                                    (user.communication +
+                                      user.engineer_skills +
+                                      user.time_management +
+                                      user.languages) /
+                                      4
+                                  ) +
+                                  "\n                                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("small", [_vm._v("Средняя оценка")])
+                          ]
+                        )
+                      ]
+                    )
+                  ]
+                )
+              })
+            ],
+            2
           )
         ])
       ])
@@ -53486,7 +53489,7 @@ Vue.component(vform__WEBPACK_IMPORTED_MODULE_0__["AlertError"].name, vform__WEBP
 
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var routes = [{
-  path: '/create',
+  path: '/',
   component: __webpack_require__(/*! ./components/Create.vue */ "./resources/js/components/Create.vue")["default"]
 }, {
   path: '/show',
