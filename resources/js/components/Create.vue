@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container mb-5">
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
@@ -16,25 +16,37 @@
                                 <label for="exampleFormControlFile1">Загрузить фото</label>
                                 <input @change="uploadPhoto" type="file" class="form-control-file">
                             </div>
-                            <div class="form-group">
-                                <label for="inputEmail4">Коммуникация</label>
-                                <input v-model="form.communication" type="number" class="form-control" min="0" max="10"
-                                    placeholder="Коммуникация">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="inputEmail4">Коммуникация</label>
+                                        <input v-model="form.communication" type="number" class="form-control" min="0"
+                                            max="10" placeholder="Коммуникация от 0 до 10">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="inputEmail4">Инженерные навыки</label>
+                                        <input v-model="form.engineer" type="number" class="form-control" min="0"
+                                            max="10" placeholder="Инженерные навыки от 0 до 10">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="inputEmail4">Инженерные навыки</label>
-                                <input v-model="form.engineer" type="number" class="form-control" min="0" max="10"
-                                    placeholder="Инженерные навыки">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail4">Тайм менеджмент</label>
-                                <input v-model="form.time" type="number" class="form-control" min="0" max="10"
-                                    placeholder="Тайм менеджмент">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail4">Знание языков</label>
-                                <input v-model="form.language" type="number" class="form-control" min="0" max="10"
-                                    placeholder="Знание языков">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="inputEmail4">Тайм менеджмент</label>
+                                        <input v-model="form.time" type="number" class="form-control" min="0" max="10"
+                                            placeholder="Тайм менеджмент от 0 до 10">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="inputEmail4">Знание языков</label>
+                                        <input v-model="form.language" type="number" class="form-control" min="0"
+                                            max="10" placeholder="Знание языков от 0 до 10">
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail4">Добавить проект</label>
