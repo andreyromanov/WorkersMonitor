@@ -1787,9 +1787,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      a: 0,
+      addedProjects: [],
       projects: {},
       form: new Form({
         fullname: '',
@@ -1803,6 +1807,19 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    check: function check() {
+      if (this.form.time == 10) {
+        this.addedProjects.push(this.form.project_num);
+        this.a++;
+        this.form.project_num = this.a;
+        console.log(this.a);
+      } else if (this.form.time != "" && this.form.time != 10) {
+        this.form.project_num = 1;
+      }
+
+      console.log('------------------');
+      console.log(this.form.project_num);
+    },
     loadProjects: function loadProjects() {
       var _this = this;
 
@@ -38492,23 +38509,26 @@ var render = function() {
                       ],
                       staticClass: "form-control",
                       on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "project_num",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "project_num",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          _vm.check
+                        ]
                       }
                     },
                     [
@@ -38521,7 +38541,10 @@ var render = function() {
                       _vm._l(_vm.projects, function(project) {
                         return _c(
                           "option",
-                          { key: project.id, attrs: { value: "1" } },
+                          {
+                            key: project.id,
+                            domProps: { value: project.project_name }
+                          },
                           [
                             _vm._v(
                               "\n                                    " +
@@ -38534,6 +38557,14 @@ var render = function() {
                     2
                   )
                 ]),
+                _vm._v(" "),
+                this.form.time == 10
+                  ? _c("div", [
+                      _vm._v("Проекты - " + _vm._s(_vm.addedProjects))
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("br"),
                 _vm._v(" "),
                 _c(
                   "button",

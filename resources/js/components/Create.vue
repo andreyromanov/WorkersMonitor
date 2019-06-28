@@ -50,13 +50,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail4">Добавить проект</label>
-                                <select v-model="form.project_num" class="form-control">
+                                <select v-model="form.project_num" @change="check" class="form-control">
                                     <option value="" selected="selected"> --- </option>
-                                    <option v-for="project in projects" :key="project.id" value="1">
+                                    <option v-for="project in projects" :key="project.id" v-bind:value="project.project_name">
                                         {{project.project_name}}</option>
 
                                 </select>
                             </div>
+                            <div v-if="this.form.time == 10">Проекты - {{ addedProjects }}</div>
+                            <br>
                             <button type="submit" class="btn btn-primary">Добавить</button>
                         </form>
                     </div>
@@ -69,7 +71,10 @@
 <script>
     export default {
         data() {
+            
             return {
+                a: 0,
+                addedProjects: [],
                 projects: {},
                 form: new Form({
                     fullname: '',
@@ -83,6 +88,20 @@
             }
         },
         methods: {
+            check() {
+                if (this.form.time == 10) {
+                    this.addedProjects.push(this.form.project_num);
+                    this.a++;
+                    this.form.project_num = this.a;
+                    console.log(this.a);
+                } else if(this.form.time != "" && this.form.time != 10){
+                    
+                    this.form.project_num = 1;
+                }          
+                
+                console.log('------------------');
+                console.log(this.form.project_num);
+            },
             loadProjects() {
                 axios.get("api/project").then(({
                     data
