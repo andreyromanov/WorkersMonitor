@@ -14,4 +14,7 @@
 Route::get('/', function () {
     return view('create');
 });
-Route::post('formSubmit','PostController@formSubmit');
+//Route::post('formSubmit','PostController@formSubmit');
+Route::get('/{vue_capture?}', function () {
+    return view('create');
+  })->where('vue_capture', '[\/\w\.-]*');

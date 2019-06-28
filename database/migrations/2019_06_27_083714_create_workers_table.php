@@ -14,13 +14,14 @@ class CreateWorkersTable extends Migration
     public function up()
     {
         Schema::create('workers', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned();
+            $table->bigIncrements('id');
             $table->string('fullname');
             $table->string('photo');
             $table->integer('communication');
             $table->integer('engineer_skills');
             $table->integer('time_management');
             $table->integer('languages');
+            $table->integer('projects')->default('0');
             $table->timestamps();
 
         });

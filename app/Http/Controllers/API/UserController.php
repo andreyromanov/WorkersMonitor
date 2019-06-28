@@ -52,6 +52,7 @@ class UserController extends Controller
             'engineer_skills' => $request['engineer'],
             'time_management' => $request['time'],
             'languages' => $request['language'],
+            'projects' => $request['project_num'],
         ]);
     }
 

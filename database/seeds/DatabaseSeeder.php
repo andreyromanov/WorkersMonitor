@@ -11,11 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        for($i=0;$i<15;$i++){
+        for($i=1;$i<16;$i++){
         DB::table('projects')->insert([
             
             [
-            'project_name' => str_random(10)
+            'project_name' => 'ПРОЕКТ '.$i
             ]
           
 

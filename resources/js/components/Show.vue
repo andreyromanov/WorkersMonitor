@@ -34,7 +34,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <h5 class="text-center pt-3">Текущих проектов - 1</h5>
+                                    <h5 class="text-center pt-3">Текущих проектов - {{user.projects}}</h5>
                                 </div>
                                 <div class="col-md-2 text-center border-left">
                                     <h1 class="pt-5">

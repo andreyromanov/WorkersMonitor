@@ -1785,7 +1785,8 @@ __webpack_require__.r(__webpack_exports__);
         communication: '',
         engineer: '',
         time: '',
-        language: ''
+        language: '',
+        project_num: ''
       })
     };
   },
@@ -1810,9 +1811,7 @@ __webpack_require__.r(__webpack_exports__);
         };
 
         reader.readAsDataURL(file);
-      } else {
-        swal.fire('Failed to Upload!', 'More than 2MB.', 'warning');
-      }
+      } else {}
     },
     createUser: function createUser() {
       this.form.post('api/user');
@@ -38454,16 +38453,57 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "select",
-                    { staticClass: "form-control" },
-                    _vm._l(_vm.projects, function(project) {
-                      return _c("option", { key: project.id }, [
-                        _vm._v(
-                          "\n                                    " +
-                            _vm._s(project.project_name)
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.project_num,
+                          expression: "form.project_num"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.form,
+                            "project_num",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "option",
+                        { attrs: { value: "", selected: "selected" } },
+                        [_vm._v(" --- ")]
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.projects, function(project) {
+                        return _c(
+                          "option",
+                          { key: project.id, attrs: { value: "1" } },
+                          [
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(project.project_name)
+                            )
+                          ]
                         )
-                      ])
-                    }),
-                    0
+                      })
+                    ],
+                    2
                   )
                 ]),
                 _vm._v(" "),
@@ -38636,7 +38676,9 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("h5", { staticClass: "text-center pt-3" }, [
-                            _vm._v("Текущих проектов - 1")
+                            _vm._v(
+                              "Текущих проектов - " + _vm._s(user.projects)
+                            )
                           ])
                         ]),
                         _vm._v(" "),

@@ -38,11 +38,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail4">Добавить проект</label>
-                                <select class="form-control">
-                                    
-                                    <option v-for="project in projects" :key="project.id">
+                                <select v-model="form.project_num" class="form-control">
+                                    <option value="" selected="selected"> --- </option>
+                                    <option v-for="project in projects" :key="project.id" value="1">
                                         {{project.project_name}}</option>
-                                    
+
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Добавить</button>
@@ -65,13 +65,14 @@
                     communication: '',
                     engineer: '',
                     time: '',
-                    language: ''
+                    language: '',
+                    project_num: ''
                 })
             }
         },
         methods: {
             loadProjects() {
-                 axios.get("api/project").then(({
+                axios.get("api/project").then(({
                     data
                 }) => (this.projects = data.data));
             },
@@ -84,11 +85,7 @@
                     }
                     reader.readAsDataURL(file);
                 } else {
-                    swal.fire(
-                        'Failed to Upload!',
-                        'More than 2MB.',
-                        'warning'
-                    )
+
                 }
             },
 
@@ -99,11 +96,12 @@
             }
         },
         created() {
-            
+
             Fire.$on('AfterCreate', () => {
                 console.log('Created new worker');
             });
             this.loadProjects();
+
         }
     }
 
