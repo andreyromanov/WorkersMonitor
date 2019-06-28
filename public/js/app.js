@@ -1789,11 +1789,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       a: 0,
       addedProjects: [],
+      addedProject: '',
       projects: {},
       form: new Form({
         fullname: '',
@@ -1812,13 +1815,10 @@ __webpack_require__.r(__webpack_exports__);
         this.addedProjects.push(this.form.project_num);
         this.a++;
         this.form.project_num = this.a;
-        console.log(this.a);
       } else if (this.form.time != "" && this.form.time != 10) {
+        this.addedProject = this.form.project_num;
         this.form.project_num = 1;
       }
-
-      console.log('------------------');
-      console.log(this.form.project_num);
     },
     loadProjects: function loadProjects() {
       var _this = this;
@@ -38558,10 +38558,14 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                this.form.time == 10
+                this.addedProjects.length != 0
                   ? _c("div", [
                       _vm._v("Проекты - " + _vm._s(_vm.addedProjects))
                     ])
+                  : _vm._e(),
+                _vm._v(" "),
+                this.addedProject != ""
+                  ? _c("div", [_vm._v("Выбран - " + _vm._s(_vm.addedProject))])
                   : _vm._e(),
                 _vm._v(" "),
                 _c("br"),

@@ -52,12 +52,14 @@
                                 <label for="inputEmail4">Добавить проект</label>
                                 <select v-model="form.project_num" @change="check" class="form-control">
                                     <option value="" selected="selected"> --- </option>
-                                    <option v-for="project in projects" :key="project.id" v-bind:value="project.project_name">
+                                    <option v-for="project in projects" :key="project.id"
+                                        v-bind:value="project.project_name">
                                         {{project.project_name}}</option>
 
                                 </select>
                             </div>
-                            <div v-if="this.form.time == 10">Проекты - {{ addedProjects }}</div>
+                            <div v-if="this.addedProjects.length != 0">Проекты - {{ addedProjects }}</div>
+                            <div v-if="this.addedProject != ''">Выбран - {{ addedProject }}</div>
                             <br>
                             <button type="submit" class="btn btn-primary">Добавить</button>
                         </form>
@@ -71,10 +73,11 @@
 <script>
     export default {
         data() {
-            
+
             return {
                 a: 0,
                 addedProjects: [],
+                addedProject: '',
                 projects: {},
                 form: new Form({
                     fullname: '',
@@ -93,14 +96,10 @@
                     this.addedProjects.push(this.form.project_num);
                     this.a++;
                     this.form.project_num = this.a;
-                    console.log(this.a);
-                } else if(this.form.time != "" && this.form.time != 10){
-                    
+                } else if (this.form.time != "" && this.form.time != 10) {
+                    this.addedProject = this.form.project_num;
                     this.form.project_num = 1;
-                }          
-                
-                console.log('------------------');
-                console.log(this.form.project_num);
+                }
             },
             loadProjects() {
                 axios.get("api/project").then(({
@@ -132,7 +131,6 @@
                 console.log('Created new worker');
             });
             this.loadProjects();
-
         }
     }
 
