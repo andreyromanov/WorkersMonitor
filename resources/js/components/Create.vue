@@ -58,8 +58,8 @@
 
                                 </select>
                             </div>
-                            <div v-if="this.addedProjects.length != 0">Проекты - {{ addedProjects }}</div>
-                            <div v-if="this.addedProject != ''">Выбран - {{ addedProject }}</div>
+                            <div v-if="this.addedProjects.length != 0">Проекты - <span v-for="prj in addedProjects" class="badge badge-success mr-2 mb-2" style="font-size: 1.2em;">{{ prj }}</span></div>
+                            <div v-if="this.addedProject != ''">Выбран - <span class="badge badge-success" style="font-size: 1.2em;">{{ addedProject }}</span></div>
                             <br>
                             <button type="submit" class="btn btn-primary">Добавить</button>
                         </form>
@@ -93,10 +93,12 @@
         methods: {
             check() {
                 if (this.form.time == 10) {
-                    this.addedProjects.push(this.form.project_num);
-                    this.a++;
+                    this.addedProject = 0;
+                    this.addedProjects.indexOf(this.form.project_num) === -1 ? (this.addedProjects.push(this.form.project_num), this.a++) : alert('Такой проект уже добавлен');
                     this.form.project_num = this.a;
-                } else if (this.form.time != "" && this.form.time != 10) {
+                    console.log(this.a);
+                } else if (this.form.time != 10) {
+                    this.addedProjects = [];
                     this.addedProject = this.form.project_num;
                     this.form.project_num = 1;
                 }

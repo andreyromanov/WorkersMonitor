@@ -1812,10 +1812,12 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     check: function check() {
       if (this.form.time == 10) {
-        this.addedProjects.push(this.form.project_num);
-        this.a++;
+        this.addedProject = 0;
+        this.addedProjects.indexOf(this.form.project_num) === -1 ? (this.addedProjects.push(this.form.project_num), this.a++) : alert('Такой проект уже добавлен');
         this.form.project_num = this.a;
-      } else if (this.form.time != "" && this.form.time != 10) {
+        console.log(this.a);
+      } else if (this.form.time != 10) {
+        this.addedProjects = [];
         this.addedProject = this.form.project_num;
         this.form.project_num = 1;
       }
@@ -38559,13 +38561,37 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 this.addedProjects.length != 0
-                  ? _c("div", [
-                      _vm._v("Проекты - " + _vm._s(_vm.addedProjects))
-                    ])
+                  ? _c(
+                      "div",
+                      [
+                        _vm._v("Проекты - "),
+                        _vm._l(_vm.addedProjects, function(prj) {
+                          return _c(
+                            "span",
+                            {
+                              staticClass: "badge badge-success mr-2 mb-2",
+                              staticStyle: { "font-size": "1.2em" }
+                            },
+                            [_vm._v(_vm._s(prj))]
+                          )
+                        })
+                      ],
+                      2
+                    )
                   : _vm._e(),
                 _vm._v(" "),
                 this.addedProject != ""
-                  ? _c("div", [_vm._v("Выбран - " + _vm._s(_vm.addedProject))])
+                  ? _c("div", [
+                      _vm._v("Выбран - "),
+                      _c(
+                        "span",
+                        {
+                          staticClass: "badge badge-success",
+                          staticStyle: { "font-size": "1.2em" }
+                        },
+                        [_vm._v(_vm._s(_vm.addedProject))]
+                      )
+                    ])
                   : _vm._e(),
                 _vm._v(" "),
                 _c("br"),
