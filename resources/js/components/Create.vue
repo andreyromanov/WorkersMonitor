@@ -21,14 +21,14 @@
                                     <div class="form-group">
                                         <label for="inputEmail4">Коммуникация</label>
                                         <input v-model="form.communication" type="number" class="form-control" min="0"
-                                            max="10" placeholder="Коммуникация от 0 до 10">
+                                            max="10" placeholder="Коммуникация от 0 до 10" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="inputEmail4">Инженерные навыки</label>
                                         <input v-model="form.engineer" type="number" class="form-control" min="0"
-                                            max="10" placeholder="Инженерные навыки от 0 до 10">
+                                            max="10" placeholder="Инженерные навыки от 0 до 10" required>
                                     </div>
                                 </div>
                             </div>
@@ -37,14 +37,14 @@
                                     <div class="form-group">
                                         <label for="inputEmail4">Тайм менеджмент</label>
                                         <input v-model="form.time" type="number" class="form-control" min="0" max="10"
-                                            placeholder="Тайм менеджмент от 0 до 10">
+                                            placeholder="Тайм менеджмент от 0 до 10" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="inputEmail4">Знание языков</label>
                                         <input v-model="form.language" type="number" class="form-control" min="0"
-                                            max="10" placeholder="Знание языков от 0 до 10">
+                                            max="10" placeholder="Знание языков от 0 до 10" required>
                                     </div>
                                 </div>
                             </div>
@@ -58,8 +58,11 @@
 
                                 </select>
                             </div>
-                            <div v-if="this.addedProjects.length != 0">Проекты - <span v-for="prj in addedProjects" class="badge badge-success mr-2 mb-2" style="font-size: 1.2em;">{{ prj }}</span></div>
-                            <div v-if="this.addedProject != ''">Выбран - <span class="badge badge-success" style="font-size: 1.2em;">{{ addedProject }}</span></div>
+                            <div v-if="this.addedProjects.length != 0">Проекты - <span v-for="prj in addedProjects"
+                                    class="badge badge-success mr-2 mb-2" style="font-size: 1.2em;">{{ prj }}</span>
+                            </div>
+                            <div v-if="this.addedProject != ''">Выбран - <span class="badge badge-success"
+                                    style="font-size: 1.2em;">{{ addedProject }}</span></div>
                             <br>
                             <button type="submit" class="btn btn-primary">Добавить</button>
                         </form>
@@ -86,7 +89,7 @@
                     engineer: '',
                     time: '',
                     language: '',
-                    project_num: ''
+                    project_num: 0
                 })
             }
         },
@@ -94,9 +97,9 @@
             check() {
                 if (this.form.time == 10) {
                     this.addedProject = 0;
-                    this.addedProjects.indexOf(this.form.project_num) === -1 ? (this.addedProjects.push(this.form.project_num), this.a++) : alert('Такой проект уже добавлен');
+                    this.addedProjects.indexOf(this.form.project_num) === -1 ? (this.addedProjects.push(this.form
+                        .project_num), this.a++) : alert('Такой проект уже добавлен');
                     this.form.project_num = this.a;
-                    console.log(this.a);
                 } else if (this.form.time != 10) {
                     this.addedProjects = [];
                     this.addedProject = this.form.project_num;
