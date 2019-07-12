@@ -18,7 +18,8 @@ Vue.use(VueRouter)
 
 let routes = [
     { path: '/', component: require('./components/Create.vue').default },
-    { path: '/show', component: require('./components/Show.vue').default }
+    { path: '/show', component: require('./components/Show.vue').default },
+    { path: '/chat', component: require('./components/Chat.vue').default }
   ]
 
   const router = new VueRouter({

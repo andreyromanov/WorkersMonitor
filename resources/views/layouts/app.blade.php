@@ -12,14 +12,17 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/script.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -42,6 +45,9 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
+                            <router-link class="nav-link" to="/chat">Чат</router-link>
+                        </li>
+                        <li class="nav-item">
                             <router-link class="nav-link" to="/">Создать</router-link>
                         </li>
                         <li class="nav-item">
@@ -49,13 +55,14 @@
                         </li>
                     </ul>
                     <div class="input-group input-group-sm" style="width: 200px;">
-                    <input @keyup="searchit" v-model="search" class="form-control form-control-navbar" type="search" placeholder="Поиск по ФИО" aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" @click="searchit">
-                            <i class="fa fa-search"></i>
-                        </button>
+                        <input @keyup="searchit" v-model="search" class="form-control form-control-navbar" type="search"
+                            placeholder="Поиск по ФИО" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-navbar" @click="searchit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </nav>
@@ -65,6 +72,6 @@
 
         </div>
     </div>
-    </body>
+</body>
 
 </html>
