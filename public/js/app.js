@@ -39681,13 +39681,17 @@ var staticRenderFns = [
                 _c(
                   "div",
                   {
-                    staticClass: "col-md-12 border chat p-2",
+                    staticClass: "col-md-12 border chat p-2 scroll",
                     attrs: { id: "chatBox" }
                   },
                   [
-                    _vm._v(
-                      "\n                            chat fiel\n                        "
-                    )
+                    _c("div", [
+                      _c("label", { staticClass: "b-msg p-2" }, [
+                        _vm._v(
+                          "Greeting traveller wewqe qweqweqe qw  gg th  jy htr fedw s ss s ws wsws"
+                        )
+                      ])
+                    ])
                   ]
                 ),
                 _vm._v(" "),
